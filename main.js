@@ -55,12 +55,12 @@ const metodoDePago = () => {
   if (metodo == "tarjeta") {
     total *= 1.1
     console.log(total);
+    alert("el total es:" + total )
   }else if ( metodo == "efectivo") {
     total -= 1000
     alert("tenes un descuento de 1000, el total es:" + total)
   }
 
-  
 }
 
 metodoDePago()

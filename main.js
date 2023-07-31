@@ -38,16 +38,6 @@ while (seleccionarProductos != 0) {
 
 alert("el total de la compra es de: " + total)
 
-
-const envio = () => {
-    if (total >= 10000) {
-      alert("El envio es gratuito")
-    }else{
-      total += 1000
-      alert("el costo de envio es de 1000, el total es: " + total)
-    }
-}
-
 // envio()
 
 const metodoDePago = () => {

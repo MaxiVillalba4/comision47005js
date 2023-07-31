@@ -38,8 +38,6 @@ while (seleccionarProductos != 0) {
 
 alert("el total de la compra es de: " + total)
 
-// envio()
-
 const metodoDePago = () => {
   let metodo = prompt("ingrese el metodo de pago, tarjeta o efectivo" )
   if (metodo == "tarjeta") {

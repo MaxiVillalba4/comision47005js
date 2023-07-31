@@ -1,1 +1,1 @@
-# comision47005js
+la idea de mi proyecto final es agregarle js a mi entrega final del curso de desarrollo web que es un ecommerce de ropa.

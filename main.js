@@ -1,54 +1,90 @@
-//pedir tipo de producto
-
-alert("Ingrese la opcion del producto que desea llevar, para salir ingrese 0")
-let seleccionarProductos = Number(prompt( "1-buzo $3000 2-remera $1500 3-jean $5000 4-Zapatillas $6000 "))
-let seleccionarCantidad;
-let total = 0;
-
-
-const cantidad = (cant, precio) => {
-  return cant * precio
-}
+prendas = [
+  { id: 1, name: "buzo", price: 12000 },
+  { id: 2, name: "jean", price: 10000 },
+  { id: 3, name: "remera", price: 4000 },
+  { id: 4, name: "short", price: 5000 },
+  { id: 5, name: "gorra", price: 1500 },
+];
 
 
-while (seleccionarProductos != 0) {
-  switch (seleccionarProductos) {
+const mostrarPrendas = () => {
+  console.log("Catálogo de Ropa:");
+
+  prendas.forEach(prenda => {
+    console.log(`
+      ID: ${prenda.id}, 
+      Nombre: ${prenda.name}, 
+      Precio: $${prenda.price}
+      `);
+  });
+};
+
+  const prendaPorId = id => prendas.find(prenda => prenda.id === id);
+
+  const filtradoPrecio = maxPrice => prendas.filter(prenda => prenda.price <= maxPrice);
+
+
+let opcion = parseInt(prompt("Ingrese una opción:\n1. Comprar Ropa por codigo ID\n2. Ver catálogo\n3. Buscar producto por nombre\n4. Filtrar por precio maximo\n5. Salir"));
+
+while (opcion !== 5) {
+  switch (opcion) {
+
     case 1:
-      seleccionarCantidad= Number(prompt("el producto seleccionado es buzo, indique la cantidad"))
-            total += cantidad(seleccionarCantidad, 3000)
+      let respuesta = "si";
+      let contador = 0;
+      while (respuesta === "si") {
+        const prendaId = parseInt(prompt("Ingrese el ID de la prenda que desea comprar:"));
+        const prenda = prendaPorId(prendaId);
+      
+        if (prenda) {
+          alert(`Ha comprado ${prenda.name} por $${prenda.price}. ¡Gracias por su compra!`);
+          contador = contador + prenda.price;
+          respuesta = prompt("¿Quiere seguir comprando? si/no");
+        } else {
+          alert("No se encontró la prenda seleccionada.");
+        }
+      }
+      alert(`Total a pagar: $${contador}`);
       break;
-      case 2:
-        seleccionarCantidad = Number(prompt("el producto seleccionado es remera, indique la cantidad"))
-        total += cantidad(seleccionarCantidad, 1500)
-      break;
+
+    case 2:
+      mostrarCatalogo();
+        alert ("Los prendas se mostraron");
+        break;
+
     case 3:
-      seleccionarCantidad = Number(prompt("el producto seleccionado es jean, indique la cantidad"))
-      total += cantidad(seleccionarCantidad, 5000)
-    break;
-    case 4:
-      seleccionarCantidad = Number(prompt("el producto seleccionado es Zapatillas, indique la cantidad"))
-      total += cantidad(seleccionarCantidad, 6000)
-    break;
+      const nombre = prompt("Ingrese el nombre del producto que busca");
+      const prendaEncontrada = prendas.find(prenda => prenda.name === nombre);
+      if (prendaEncontrada) {
+          alert (`Se encontro el producto ${nombre} en el catálogo.`);
+      } else {
+        alert(`El producto ${nombre} no se encontró en el catálogo.`);
+      }
+      break;
+
+      case 4:
+          const maxPrice = parseFloat(prompt("Ingrese el precio máximo para el filtrado:"));
+          const prendasFiltradas = filtradoPrecio(maxPrice);
+    
+          if (prendasFiltradas.length > 0) {
+            console.log("Prendas filtradas por precio:");
+            prendasFiltradas.forEach(Prenda => {
+              console.log(`
+                ID: ${Prenda.id},
+                Nombre: ${Prenda.name},
+                Precio: $${Prenda.price}
+              `);
+          });
+          alert ("Los productos menores a ese precio se mostraron por consola");
+          } else {
+            alert(`No se encontraron prendas dentro del rango de precio $${maxPrice}.`);
+          }
+          break;
 
     default:
+      alert("Opción no válida. Por favor, ingrese una opción válida.");
       break;
   }
-  seleccionarProductos = Number(prompt( "1-buzo $3000 2-remera $1500 3-jean $5000 4-Zapatillas $6000 "))
+
+  opcion = parseInt(prompt("Ingrese una opción:\n1. Comprar Ropa por codigo ID\n2. Ver catálogo\n3. Buscar producto por nombre\n4. Filtrar por precio maximo\n5. Salir"));
 }
-
-alert("el total de la compra es de: " + total)
-
-const metodoDePago = () => {
-  let metodo = prompt("ingrese el metodo de pago, tarjeta o efectivo" )
-  if (metodo == "tarjeta") {
-    total *= 1.1
-    console.log(total);
-    alert("el total es:" + total )
-  }else if ( metodo == "efectivo") {
-    total -= 1000
-    alert("tenes un descuento de 1000, el total es:" + total)
-  }
-
-}
-
-metodoDePago()

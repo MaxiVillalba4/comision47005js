@@ -24,7 +24,7 @@ const mostrarPrendas = () => {
   const filtradoPrecio = maxPrice => prendas.filter(prenda => prenda.price <= maxPrice);
 
 
-let opcion = parseInt(prompt("Ingrese una opción:\n1. Comprar Ropa por codigo ID\n2. Ver catálogo\n3. Buscar producto por nombre\n4. Filtrar por precio maximo\n5. Salir"));
+let opcion = parseInt(prompt("Ingrese una opción:\n1. Comprar Ropa por codigo \n2. Ver catálogo\n3. Buscar producto por nombre\n4. Filtrar por precio maximo\n5. Salir"));
 
 while (opcion !== 5) {
   switch (opcion) {
@@ -48,8 +48,11 @@ while (opcion !== 5) {
       break;
 
     case 2:
-      mostrarCatalogo();
-        alert ("Los prendas se mostraron");
+      let catalogo = "si"
+      alert (" buzo $12000 id=1 \ jean $10000 id=2 \ remera $4000 id=3 \ short $5000 id=4 \ gorra $1500 id=5 ");
+      if (catalogo === "si")
+        catalogo = prompt ("¿Quiere seguir comprando? si/no");
+        else (catalogo === "no")
         break;
 
     case 3:
